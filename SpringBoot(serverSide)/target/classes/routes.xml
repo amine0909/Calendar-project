@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+    <adminRoutes>
+        <url>/users/all</url>
+        <url>/users/delete/*</url>
+    </adminRoutes>
+    <managerRoutes>
+        <url>/getEmployeesEvents/*</url>
+        <url>/autoriserEvent/*</url>
+        <url>/refuserEvent/*</url>
+    </managerRoutes>
+    <employeeRoutes>
+        <url>/create/*</url>
+        <url>/getPlanning/*</url>
+        <url>/deteleAll/*</url>
+        <url>/update/*</url>
+        <url>/getAllPlannings/*</url>
+        <url>/newCalendar/*</url>
+        <url>/getUserNotifications/</url>
+        <url>/getAllUserNotifications/*</url>
+    </employeeRoutes>
+    <adminAndManagerRoutes>
+        <url>/users/manageremployees</url>
+        <url>/testing/oussama</url>
+        <url>/users/get/*</url>
+        <url>/users/adduser</url>
+        <url>/users/bosses</url>
+        <url>/users/update/*</url>
+        <url>/users/next/*</url>
+        <url>/users/previous/*</url>
+    </adminAndManagerRoutes>
+    <forAllRoutes>
+    </forAllRoutes>
+</routes>
