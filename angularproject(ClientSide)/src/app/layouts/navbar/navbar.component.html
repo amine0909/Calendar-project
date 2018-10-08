@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom ">
+  <span (click)="openNav()"><span class="navbar-toggler-icon"></span></span>
+    <a class="navbar-brand" routerLink=""  style="margin-left: 70px; padding-left: 10px; cursor:pointer"><i class="kk kk-event-date2" ></i> Gestionnaire des évènements</a>
+
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+
+      <ul class="nav navbar-nav ml-auto">
+          <!-- <li class="nav-item">
+            <h5 class="navbar-brand">Bienvenue, Foulen ddddd</h5>
+            <img src="assets/img/user.png" width="40px">
+          </li> -->
+
+          <li class="nav-item dropdown" *ngIf="isLoggedIn">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              User name
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+              <a class="dropdown-item" routerLink="/dashboard/notifications">Notification</a>
+              <a class="dropdown-item" href="#"  (click)="onDeconnect()">Deconnexion</a>
+            </div>
+          </li>
+        </ul>
+      <ul class="nav navbar-nav ml-auto">
+      <li *ngIf="showAllUsersLink"><a routerLink="/users/all">Tous les Utilisateurs</a></li>
+     <li *ngIf="showAllUsersLink"><a routerLink="/users/myEmployees">Mes Employes</a></li>
+    </ul>
+    </div>
+  </nav>
+<div id="mySidenav" class="sidenav" style="z-index: 999">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+    <a *ngIf="showHomeLink" routerLink="/" routerLinkActive="active"><i class="kk kk-Home"></i> Accueil</a>
+    <a *ngIf="showLoginLink" routerLink="/Login" routerLinkActive="active"><i class="kk kk-key"></i> Se Connecter</a>
+    <a *ngIf="showSignupLink" routerLink="/SignUp" routerLinkActive="active"><i class="kk kk-users"></i> Ajouter Un Utilisateur</a>
+    <a *ngIf="showCalendarLink" routerLink="/dashboard" routerLinkActive="active"><i class="kk kk-event-date2"></i> Dashboard</a>
+    <!-- <a style="cursor:pointer;" *ngIf="isLoggedIn" (click)="onDeconnect()"><i class="kk kk-off"></i> Déconnexion</a> -->
+  </div>

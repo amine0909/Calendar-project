@@ -1,0 +1,64 @@
+<div class="container">
+  <br>
+      <div class="row">
+          
+      <div class="col-12">
+        <br>
+        <div class="text-center">
+          <img src="assets/img/account.svg" width="100em">
+          <br>
+          <h2>Ajouter Un Utilisateur</h2>
+        </div>
+      </div>
+
+<form [formGroup]="signUpForm" class="col-12 mx-auto" (ngSubmit)="onSubmitSignUpForm()">
+      <div class="col-7 mx-auto">
+        <br>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="prenom" #in1 formControlName="firstName">
+          <span class="help-block text-danger" *ngIf="in1.touched && in1.invalid">anything</span>
+        </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="nom" formControlName="lastName">  
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="email" formControlName="email">  
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="mot de passe" formControlName="password">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="confirmer mot de passe" formControlName="checkPassword">
+          </div>
+          <div class="form-group">
+            <select  formControlName="hisBoss" class="form-control">
+              <option value="" disabled>Supérieure Hiérarchique</option>
+              <option *ngFor="let user of users" [value]="user.id">{{user.firstName}} {{user.lastName}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select aria-placeholder="role" required formControlName="role" class="form-control ">
+              <option value="" disabled>poste utilisateur dans la sociéte</option>
+              <option value="admin">Admin</option>
+              <option value="manager">Manager</option>
+              <option value="employee">Employé</option>
+            </select>
+          </div>
+            <input type="submit" class="login-btn noselect btn btn-primary" value="Creer mon compte" style="width:100%;" [disabled]="signUpForm.invalid"/>
+            <p *ngIf="httpErrors" [class]="styleDecision()">{{httpErrors.message}}</p>
+      </div>
+</form>
+       <div class="col-12">
+         <br>
+       <!--<h6 class="text-center"><a routerLink="/Login">Si Vous Avez Un Compte, Cliquez Ici</a></h6>  -->
+      </div>
+      
+         
+        
+         
+      
+      
+      </div>
+  </div>
+ 
+  

@@ -1,0 +1,40 @@
+
+
+<div *ngIf="notificationsInfo then notifications;else Nonotifications" ></div>
+
+<ng-template #notifications>
+    <div class="col-md-10 offset-md-1" *ngFor="let item of notificationsInfo">
+         <div class="eventFeedback">
+            <h4>{{ item.senderNotif}} {{item.contentNotif}}</h4>
+        </div>
+
+        <div class="eventDetails col-md-6">
+            <table class="table">
+                <tr>
+                    <td>Event Name : </td>
+                    <td>{{item.EventTitle }}</td>
+                </tr>
+                <tr>
+                    <td>Start Date : </td>
+                    <td> {{ item.startDate | date: 'longDate' }} </td>
+                </tr>
+                <tr>
+                    <td>End date</td>
+                    <td>{{ item.endDate | date: 'longDate'  }}</td>
+                </tr>
+                <tr>
+                    <td>Start Hour</td>
+                    <td> {{ item.startDate | date: 'HH:mm'}}</td>
+                </tr>
+                <tr>
+                    <td>End  Hour</td>
+                    <td> {{ item.endDate | date: 'HH:mm'}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template>
+    <h4>There is no notifications</h4>
+</ng-template>

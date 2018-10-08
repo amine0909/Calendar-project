@@ -1,0 +1,87 @@
+   <div *ngIf="userRole=='employee' then calendarForEmployee;else calendarForManager"></div>
+
+   <ng-template #calendarForEmployee>
+      <div class="main" *ngIf="hasPlannings==true">
+          <div class="col-md-6 offset-md-3 maincalendar">
+              <div *ngIf="calendarOptions1">
+                <ng-fullcalendar #ucCalendar [options]="calendarOptions1" [(eventsModel)]="eventsFromDataBase"></ng-fullcalendar>
+              </div>
+
+              <br>
+              <div>
+                <button class="modify-button btn btn-primary" routerLink="calendar/{{CalendarId}}">Modify calendar</button>
+                <button class="delete-button btn btn-danger" (click)="deleteCalendar()">Delete calendar</button>
+              </div>
+            </div>
+        </div>
+        <div *ngIf="hasPlannings==false ">
+            <h3>You don't have any plannigs</h3>
+            <button class="btn btn-primary" [routerLink]="['/dashboard/newCalendar']">Create new Calendar</button>
+        </div>
+
+   </ng-template>
+
+   <ng-template #calendarForManager>
+      <div class="main">
+          <div class="col-md-8 offset-md-2 maincalendar">
+              <div>
+                <ng-fullcalendar #ucCalendar [options]="calendarOptions1" [(eventsModel)]="eventsFromDataBase"></ng-fullcalendar>
+              </div>
+
+              <br>
+            </div>
+        </div>
+
+        
+        <div class="col-md-10 offset-md-1">
+            <hr>
+            Listes des evenements en attente de votre employee<br><br>
+            <div class="event col-lg-12" *ngFor="let item of eventsFromDataBase;">
+              <div *ngIf="item.status=='waiting'">
+                  <h5>Propriétaire:  {{ item.nomPropri }} {{item.prenomPropri}}</h5>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <td>Nom de l'evenement</td>
+                        <td>Date debut</td>
+                        <td>Date fin</td>
+                        <td>Heure de debut</td>
+                        <td>Heure de fin</td>
+                        <td>Description</td>
+                        <td>Action</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.start  | date: 'longDate'}}</td>
+                        <td>{{ item.end | date: 'longDate'}}</td>
+                        <td> {{item.start | date: 'HH:mm'}}</td>
+                        <td> {{item.end | date: 'HH:mm'}}</td>
+                        <span style="display:none" *ngIf="item.description=='' then noDescriptio; else description"></span>
+                        <ng-template #noDescriptio><td >Aucune desciption</td></ng-template>
+                        <ng-template #description><td >{{ item.desciption}}</td></ng-template>
+                        <td>
+                          <button class="btn btn-primary" (click)="AutoriserEvent(item.id)">Autoriser</button>
+                          <button class="btn btn-danger" (click)="RefuserEvent(item.id)">Refuser</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div><hr>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+   </ng-template>
+      
+
+   <div *ngIf="SnackBarsNotifications">
+      <div id="snackbar" class="show" *ngFor="let item of SnackBarsNotifications">
+          <div>
+             {{ item.managerName}} {{ item.content}}
+          </div>
+            
+        </div>
+   </div>
+
+   

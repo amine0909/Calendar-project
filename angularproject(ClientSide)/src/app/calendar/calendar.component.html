@@ -1,0 +1,156 @@
+<div class="sk-cube-grid" *ngIf="loading==true">
+  <div class="sk-cube sk-cube1"></div>
+  <div class="sk-cube sk-cube2"></div>
+  <div class="sk-cube sk-cube3"></div>
+  <div class="sk-cube sk-cube4"></div>
+  <div class="sk-cube sk-cube5"></div>
+  <div class="sk-cube sk-cube6"></div>
+  <div class="sk-cube sk-cube7"></div>
+  <div class="sk-cube sk-cube8"></div>
+  <div class="sk-cube sk-cube9"></div>
+</div>
+
+<!--
+<div *ngIf="loading==true">
+    Loading
+</div> -->
+
+<div class="container" [ngClass]="cursorType()" *ngIf="loading==false">
+  <div class="row">
+      <div class="col-md-3">
+              <br>
+
+
+              <button type="button" class="btn btn-block btn-warning btn-flat" (click)="openModal(template)"><i class="kk kk-add-app"></i> Ajouter Un Evenement</button>
+
+              <ng-template #template>
+                <div class="modal-header">
+                  <h4 class="modal-title pull-left">Créer Un Evenement</h4>
+                  <button type="button" #closeBtn class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 <!-- Model BODY BEGIN -->
+
+
+                 <div class="row centeredrow">
+                  <div class="col-12">
+                      <h6 class="text-center">Titre de L'évènement </h6>
+                  </div>
+                  <div class="col-12 ">
+                      <input #eventName class="text-center" type="text"
+                      class="form-control"
+                      [(ngModel)]="eventname">
+                  </div>
+                </div>
+
+                <br>
+                    <div class="row centeredrow">
+                      <div class="col-12">
+                          <h6 class="text-center">Selectionner La Date Début / Fin </h6>
+                      </div>
+                      <div class="col-12 ">
+                          <input #eventDateRange class="text-center" type="text"
+                          placeholder="Selectionner La Date"
+                          class="form-control"
+                          [(ngModel)]="PlanningDate"
+                          bsDaterangepicker
+                          [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
+                      </div>
+
+                    </div>
+
+                    <br>
+
+                    <div class="row centeredrow">
+                      <div class="col-12">
+                          <h6 class="text-center">Selectionner L'heure de debut</h6>
+                      </div>
+                      <div class="col-12">
+                        <div class="">
+                          <timepicker [(ngModel)]="hourDeb"></timepicker>
+                        </div>
+                      </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row centeredrow">
+                        <div class="col-12">
+                            <h6 class="text-center">Selectionner L'heure de fin</h6>
+                        </div>
+                        <div class="col-12">
+                          <div class="">
+                            <timepicker [(ngModel)]="hourEnd"></timepicker>
+                          </div>
+                        </div>
+                      </div>
+
+                      <br>
+
+                    <div class="row centeredrow">
+                      <div class="col-12">
+                          <h6 class="text-center">Description De L'évènement </h6>
+                      </div>
+                      <div class="col-12 ">
+                          <input #eventDescription class="text-center" type="text"
+                          [(ngModel)]="eventdescrip"
+                          placeholder="Une Petite Description"
+                          class="form-control"
+                          >
+                      </div>
+                    </div>
+
+                    <br>
+
+                    <alert type="danger" *ngIf="Alert1">
+                          <strong>Erreur!</strong> Veuillez Remplir Le Champ "Titre De L'évènement"
+                    </alert>
+
+                    <alert type="danger" *ngIf="Alert2">
+                          <strong>Erreur!</strong> Veuillez Choisir la date de Départ/Fin
+                    </alert>
+
+                    <alert type="danger" *ngIf="Alert3">
+                          <strong>Erreur!</strong> Date Incorrecte !
+                    </alert>
+
+                 <!-- Model BODY END   -->
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" (click)="createEventFromModal(eventname,PlanningDate,eventdescrip,hourDeb,hourEnd)">Create</button>
+                  <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
+                </div>
+              </ng-template>
+
+
+              <div class="box box-primary">
+                      <div class="box-header with-border">
+
+                      </div>
+                      <div class="box-body">
+
+
+                              <hr>
+                        <button (click)="saveCalendarChanges(eventname,PlanningDate,eventdescrip,hourDeb,hourEnd)"  type="button" class="btn btn-block btn-danger btn-flat" id="save_as_btn" [disabled]="ButtonDisabled"><i class="kk kk-save"></i> Enregistrer</button>
+                        <button (click)="ToogleDeleteMode()" type="button" class="btn btn-block btn-flat" [ngClass]="DeleteBtnClassToggle()" id="save_as_btn" tooltip="Si vous activez ce mode, vous pouvez supprimer les évènements" placement="bottom"><i class="kk kk-Trash"></i>{{ DeleteBtnText() }}</button>
+
+                      </div>
+                      <!-- /.box-body -->
+                    </div>
+      </div>
+
+
+
+      <div class="col-md-9">
+          <br>
+          <div *ngIf="calendarOptions">
+              <ng-fullcalendar #ucCalendar [options]="calendarOptions" [(eventsModel)]="eventsFromDataBase"
+              (eventClick)="eventClick($event.detail)"></ng-fullcalendar>
+          </div>
+      </div>
+
+  </div>
+</div>
+

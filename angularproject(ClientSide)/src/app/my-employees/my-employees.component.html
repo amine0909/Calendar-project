@@ -1,0 +1,78 @@
+<div class="col-xs-12">
+  <div class="row justify-content-center usersInfoCards" *ngFor="let user of myEmployees" [id]="user.id">
+    <div class="card col-sm-5 col-xs-10">
+      <div class="card-heading">
+        <h2 id="{{user.id}}" class="text-center">{{user.firstName}} {{user.lastName}}
+          <span class="text-success" *ngIf="myEmail === user.email">(C'est Vous)</span>
+        </h2>
+      </div>
+      <div class="card-body">
+        <table class="table table-stripped table-condensed">
+          <tr>
+            <td>
+              <strong>Prénom : </strong>
+            </td>
+            <td>
+              <p>{{user.firstName}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Nom : </strong>
+            </td>
+            <td>
+              <p>{{user.lastName}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>email : </strong>
+            </td>
+            <td>
+              <p>{{user.email}}</p>
+            </td>
+          </tr>
+          <tr *ngIf="user.hisBoss">
+            <td>
+              <strong>son supérieure : </strong>
+            </td>
+            <td>
+              <p>
+                <a href="/users/all#{{user.hisBoss.id}}">{{user.hisBoss.firstName}} {{user.hisBoss.lastName}}</a>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>role : </strong>
+            </td>
+            <td>
+              <p>{{user.role}}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card-footer">
+        <div class="row justify-content-center">
+          <a class="btn col-sm-3" id="btn-update" routerLink="/users/{{user.id}}/edit">Modifier</a>
+          <a class="btn  col-sm-3" data-toggle="modal" (click)="setIdToSupposeDelete(user.id)" data-target="#modalConfirmDelete" id="btn-delete">Supprimer</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row justify-content-center">
+    <nav aria-label="Page navigation example col-xs-12 col-lg-12">
+      <ul class="pagination col-xs-12 col-lg-12 justify-content-center">
+        <li>
+          <button class="btn btn-primary text-center" (click)="getPreviousUsersPage()" [disabled]="disablePreviousButton">
+            << Previous</button>
+        </li>
+        <li>
+          <button class="btn btn-primary text-center" (click)="getNextUsersPage()" [disabled]="disableNextButton">Next >></button>
+        </li>
+      </ul>
+    </nav>
+  </div> -->
+
+
+</div>

@@ -1,0 +1,17 @@
+.usersInfoCards {
+    margin : 30px 0px 30px 0px;
+}
+#btn-update , #btn-delete{
+border:solid 1px white;
+  color: white;
+  font-weight: bolder;
+
+}
+#btn-delete {
+    background-color: #fc5c65;
+}
+
+#btn-update {
+    background: #2bcbba;
+}
+

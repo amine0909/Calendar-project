@@ -1,0 +1,40 @@
+
+  <div class="container" id="main">
+    <br>
+        <div class="row">
+         <div class="col-12" id="ouvrir-cal">
+
+           <h5 class="text-center"><i class="kk kk-event-date2"></i> Ouvrir un Calendrier (.ICS)</h5><br>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="drop"  [dropzone]="config" (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (uploadProgress)="onUploadProcess()" >
+        <div class="cont" style="pointer-events:none;">
+            <!--pointer-events:none; is very important (hidden div) you can click through this div-->
+            <i class="fa fa-cloud-upload"></i>
+
+            <div class="tit">
+            <h6><i class="kk kk-search-file"></i> DRAG & DROP</h6>
+            </div>
+            <div class="desc">
+               Selectionner Votre Calendrier
+            </div>
+            <div class="browse" >
+              Parcourir le fichier...
+            </div>
+        </div>
+        <output id="list"></output>
+
+    </div>
+
+
+
+
+
+
+    <br>
+    <!--<h6 class="text-center" style="font-size: 12px !important">Made With <i class="kk kk-hearts"></i> By <a href="https://github.com/AdemKing">@B&amp;D</a></h6>-->
+
+

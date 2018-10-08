@@ -1,0 +1,6 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css';
+/* important for Datepicker */
+/* Mouse Cursors */
+.DeleteCursor { cursor: not-allowed !important ;}
+.NormalCursor { cursor: auto !important ;}
+.centeredrow  { margin: auto; max-width: 300px;}
